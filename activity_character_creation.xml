@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/dungeonbackground"
+              tools:context=".CharacterCreation">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal">
+
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="60dp"
+                android:minWidth="350dp"
+                android:text="Creation"
+                android:textSize="30sp"
+                android:id="@+id/CharacterNameCreation"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"/>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create"
+                android:id="@+id/Create"
+                android:clickable="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:minHeight="60dp"
+                android:minWidth="350dp"
+                android:textSize="30sp"
+                android:id="@+id/NameViewText"
+                android:layout_below="@+id/CharacterNameCreation"
+                android:layout_centerHorizontal="true" android:layout_marginTop="105dp"/>
+    </RelativeLayout>
+
+</LinearLayout>

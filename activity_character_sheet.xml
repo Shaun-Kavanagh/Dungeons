@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/dungeonbackground"
+                tools:context=".CharacterSheet">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="60dp"
+                android:minWidth="350dp"
+                android:text="Sheet"
+                android:textSize="30sp"
+                android:id="@+id/CharacterNameSheet"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"/>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:clickable="true"
+                android:id="@+id/buttonEdit" android:layout_centerVertical="true" android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+</LinearLayout>

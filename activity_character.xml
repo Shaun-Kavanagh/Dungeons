@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/dungeonbackground"
+        tools:context=".Character">
+
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="80dp"
+            android:minWidth="300dp"
+            android:text="New Character"
+            android:clickable="true"
+            android:id="@+id/buttonCharacter1"
+            android:layout_marginTop="52dp" android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="80dp"
+            android:minWidth="300dp"
+            android:text="New Character"
+            android:id="@+id/buttonCharacter2"
+            android:layout_below="@+id/buttonCharacter1" android:layout_alignLeft="@+id/buttonCharacter1"
+            android:layout_alignStart="@+id/buttonCharacter1"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="80dp"
+            android:minWidth="300dp"
+            android:text="New Character"
+            android:id="@+id/buttonCharacter3"
+            android:layout_below="@+id/buttonCharacter2" android:layout_alignLeft="@+id/buttonCharacter2"
+            android:layout_alignStart="@+id/buttonCharacter2"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="80dp"
+            android:minWidth="300dp"
+            android:text="New Character"
+            android:id="@+id/buttonCharacter4"
+            android:layout_below="@+id/buttonCharacter3" android:layout_alignLeft="@+id/buttonCharacter3"
+            android:layout_alignStart="@+id/buttonCharacter3"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="80dp"
+            android:minWidth="300dp"
+            android:text="New Character"
+            android:id="@+id/buttonCharacter5"
+            android:layout_below="@+id/buttonCharacter4" android:layout_alignLeft="@+id/buttonCharacter4"
+            android:layout_alignStart="@+id/buttonCharacter4"/>
+     </RelativeLayout>
+
