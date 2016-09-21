@@ -11,21 +11,72 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal">
+
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minHeight="60dp"
+                android:inputType="number"
+                android:minHeight="40dp"
+                android:minWidth="70dp"
+                android:id="@+id/textViewStr"
+                android:layout_below="@+id/textViewName" android:layout_alignLeft="@+id/textViewName"
+                android:layout_alignStart="@+id/textViewName"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:minHeight="40dp"
+                android:minWidth="70dp"
+                android:id="@+id/textViewDex"
+                android:layout_below="@+id/textViewName" android:layout_toRightOf="@+id/textViewStr"
+                android:layout_toEndOf="@+id/textViewStr"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:minHeight="40dp"
+                android:minWidth="70dp"
+                android:id="@+id/textViewConst"
+                android:layout_below="@+id/textViewName" android:layout_toRightOf="@+id/textViewDex"
+                android:layout_toEndOf="@+id/textViewDex"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:minHeight="40dp"
+                android:minWidth="70dp"
+                android:id="@+id/textViewInt"
+                android:layout_below="@+id/textViewName" android:layout_toRightOf="@+id/textViewConst"
+                android:layout_toEndOf="@+id/textViewConst"/>
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:minHeight="40dp"
+                android:minWidth="70dp"
+                android:id="@+id/textViewWis"
+                android:layout_below="@+id/textViewName" android:layout_toRightOf="@+id/textViewInt"
+                android:layout_toEndOf="@+id/textViewInt"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="250dp"
                 android:minWidth="350dp"
-                android:text="Sheet"
-                android:textSize="30sp"
-                android:id="@+id/CharacterNameSheet"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"/>
+                android:id="@+id/textViewEquip" android:layout_centerVertical="true" android:layout_centerHorizontal="true"/>
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Edit"
                 android:clickable="true"
-                android:id="@+id/buttonEdit" android:layout_centerVertical="true" android:layout_centerHorizontal="true"/>
+                android:id="@+id/buttonEdit"
+                android:layout_below="@id/textViewEquip" android:layout_centerVertical="true" android:layout_centerHorizontal="true"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:minWidth="350dp"
+                android:minHeight="70dp"
+                android:textSize="40sp"
+                android:id="@+id/textViewName" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 </LinearLayout>

@@ -29,16 +29,57 @@
                 android:clickable="true"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"/>
-        <TextView
+        <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Text"
-                android:minHeight="60dp"
+                android:inputType="number"
+                android:minHeight="40dp"
+                android:minWidth="70dp"
+                android:id="@+id/editTextStr"
+                android:layout_below="@+id/CharacterNameCreation" android:layout_alignLeft="@+id/CharacterNameCreation"
+                android:layout_alignStart="@+id/CharacterNameCreation"/>
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:minHeight="40dp"
+                android:minWidth="70dp"
+                android:id="@+id/editTextDex"
+                android:layout_below="@+id/CharacterNameCreation" android:layout_toRightOf="@+id/editTextStr"
+                android:layout_toEndOf="@+id/editTextStr"/>
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:minHeight="40dp"
+                android:minWidth="70dp"
+                android:id="@+id/editTextConst"
+                android:layout_below="@+id/CharacterNameCreation" android:layout_toRightOf="@+id/editTextDex"
+                android:layout_toEndOf="@+id/editTextDex"/>
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:minHeight="40dp"
+                android:minWidth="70dp"
+                android:id="@+id/editTextInt"
+                android:layout_below="@+id/CharacterNameCreation" android:layout_toRightOf="@+id/editTextConst"
+                android:layout_toEndOf="@+id/editTextConst"/>
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:minHeight="40dp"
+                android:minWidth="70dp"
+                android:id="@+id/editTextWis"
+                android:layout_below="@+id/CharacterNameCreation" android:layout_toRightOf="@+id/editTextInt"
+                android:layout_toEndOf="@+id/editTextInt"/>
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="250dp"
                 android:minWidth="350dp"
-                android:textSize="30sp"
-                android:id="@+id/NameViewText"
-                android:layout_below="@+id/CharacterNameCreation"
-                android:layout_centerHorizontal="true" android:layout_marginTop="105dp"/>
+                android:id="@+id/editTextEquip" android:layout_centerVertical="true" android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 
 </LinearLayout>
