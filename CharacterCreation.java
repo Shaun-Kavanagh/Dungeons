@@ -29,7 +29,7 @@ import java.io.OutputStreamWriter;
  * Created by shaun on 10/09/2016.
  */
 public class CharacterCreation extends AppCompatActivity {
-    EditText NameView;
+    EditText NameView, Strength,Dexterity,Constitution,Intelligence,Wisdom;
     TextView NameViewText;
     Context context;
 
@@ -40,7 +40,26 @@ public class CharacterCreation extends AppCompatActivity {
         setContentView(R.layout.activity_character_creation);
         Intent intent = getIntent();
         final String Profile = intent.getStringExtra("filename");
+        final int id;
+        if(Profile.equals("CharacterProfile1")){
+            id=0;
+        }else if(Profile.equals("CharacterProfile2")){
+            id=1;
+        }else if(Profile.equals("CharacterProfile3")){
+            id=2;
+        }else if(Profile.equals("CharacterProfile4")){
+            id=3;
+        }else if(Profile.equals("CharacterProfile5")){
+            id=4;
+        }else{
+            id=5;
+        }
         NameView = (EditText) findViewById(R.id.CharacterNameCreation);
+        Strength=(EditText)findViewById(R.id.editTextStr);
+        Dexterity=(EditText)findViewById(R.id.editTextDex);
+        Constitution=(EditText)findViewById(R.id.editTextConst);
+        Intelligence=(EditText)findViewById(R.id.editTextInt);
+        Wisdom=(EditText)findViewById(R.id.editTextWis);
         final String Name = "Please Enter Character  Name";
         NameView.setText(Name);
         final Button Create = (Button) findViewById(R.id.Create);
@@ -53,11 +72,21 @@ public class CharacterCreation extends AppCompatActivity {
                 FileIO File = new FileIO();
                 //File.load(Profile, context);
                 String Name = NameView.getText().toString() + "\n";
+
                 try {
                     File.save(Profile, Name, context);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                DatabaseHandler db= new DatabaseHandler(context);
+                int str= Integer.parseInt(Strength.getText().toString());
+                int dex= Integer.parseInt(Dexterity.getText().toString());
+                int con= Integer.parseInt(Constitution.getText().toString());
+                int inte= Integer.parseInt(Intelligence.getText().toString());
+                int wis= Integer.parseInt(Wisdom.getText().toString());
+
+                db.insert(id,Name,str,dex,con,inte,wis);
+
 
                 //send back to charcter page
                 Intent ButtonIntent = new Intent(CharacterCreation.this, Character.class) ;
