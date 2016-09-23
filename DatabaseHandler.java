@@ -17,8 +17,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String Table_Name="ProfileData";
 
     //have two columns to test
-    private static final String KEY_ID = "id";
-    private static final String KEY_NAME = "name";
+    private static final String KEY_ID = "ID";
+    private static final String KEY_NAME = "Name";
     private static final String KEY_STR ="Strength";
     private static final String KEY_DEX ="Dexterity";
     private static final String KEY_CONST ="Constitution";
@@ -84,12 +84,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public int getStrength(int id){
         int str=0;
         SQLiteDatabase db=this.getReadableDatabase();
+        if(db==null){
+            return 0;
+        }
         //
         // Cursor cursor=db.query(Table_Name,new String[]{"Strength"},"Strength like "+"'" + id+"'", null,null,null,null);
-        Cursor cursor=db.rawQuery("SELECT "+KEY_STR+" FROM "+ Table_Name+" WHERE "+KEY_ID +" LIKE "+ id+ ")",null);
+        String[] args={toString().valueOf(id)};
+        Cursor cursor=db.rawQuery("SELECT Strength FROM ProfileData WHERE ID  = ?",args);
         while(cursor.moveToFirst()){
             str=cursor.getInt(0);
+
         }
+        cursor.close();
 
         return str;
     }
