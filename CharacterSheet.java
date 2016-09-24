@@ -54,9 +54,15 @@ public class CharacterSheet extends AppCompatActivity {
         //splitReturn=ret.split(" ");
         //NameView.setText(splitReturn[1]);
         //Strength.setText(splitReturn[2]);
-        int str=db.getStrength(id);
-        Strength.setText(str);
+        try {
+           // int str = db.getStrength(id);
+            int stre=db.test();
+            Strength.setText(stre);
+        }
+        catch(RuntimeException e){
+            e.printStackTrace();
 
+        }
         Edit.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {

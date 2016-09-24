@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.Settings;
 
 /**
  * Created by shaun on 20/09/2016.
@@ -98,5 +99,38 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cursor.close();
 
         return str;
+    }
+    public int test(){
+        SQLiteDatabase db= this.getReadableDatabase();
+
+        if(db==null){
+            return 100;
+        }
+        String [] args={"Dylan"};
+       // Cursor cursor=db.rawQuery("SELECT Strength FROM ProfileData WHERE Name  = ?",args);
+        Cursor cursor=db.query(Table_Name,new String []{KEY_STR},KEY_NAME+"=?",new String[]{"Dylan"},null,null,null,null);
+        int ret=17;
+        //String]]
+        System.out.println("************************************************now");
+        if (cursor.moveToFirst()) {
+            while(!cursor.isAfterLast()) { // If you use c.moveToNext() here, you will bypass the first row, which is WRONG
+                System.out.println("************************************************later");
+                ret=Integer.parseInt(cursor.getString(0));
+                System.out.println( ret);
+
+                cursor.moveToNext();
+            }
+        }
+      /* if(cursor.moveToFirst()){
+           System.out.println("************************************************later");
+            ret=Integer.parseInt(cursor.getString(0));
+            System.out.println( ret);
+
+       }else{
+           ret=72;
+       }*/
+        cursor.close();
+        return ret;
+
     }
 }
