@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.database.sqlite.*;
 
 import java.io.*;
 import java.util.*;
@@ -70,11 +71,11 @@ public class CharacterCreation extends AppCompatActivity {
             public void onClick(View v) {
 
                 FileIO File = new FileIO();
-                //File.load(Profile, context);
-                String Name = NameView.getText().toString() + "\n";
+               //String Name=File.load(Profile, context);
+                 String Name1 = NameView.getText().toString() + "\n";
 
                 try {
-                    File.save(Profile, Name, context);
+                    File.save(Profile, Name1, context);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -84,8 +85,14 @@ public class CharacterCreation extends AppCompatActivity {
                 int con= Integer.parseInt(Constitution.getText().toString());
                 int inte= Integer.parseInt(Intelligence.getText().toString());
                 int wis= Integer.parseInt(Wisdom.getText().toString());
+                String ret= db.getName(0);
+                if(ret.equals("")) {
+                    db.insert(id, Profile, Name1, str, dex, con, inte, wis);
+                }else{
 
-                db.insert(id,Name,str,dex,con,inte,wis);
+                    //.update(id, Profile, Name1, str, dex, con, inte, wis);
+                    String ex="UPDATE STRENGTH FROM TABLENAME WHERE STR LIKE 2";
+                }
 
 
                 //send back to charcter page

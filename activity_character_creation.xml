@@ -81,5 +81,4 @@
                 android:minWidth="350dp"
                 android:id="@+id/editTextEquip" android:layout_centerVertical="true" android:layout_centerHorizontal="true"/>
     </RelativeLayout>
-
 </LinearLayout>

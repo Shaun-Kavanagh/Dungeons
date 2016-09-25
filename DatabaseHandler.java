@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.*;
 import android.provider.Settings;
 
 /**
@@ -19,6 +20,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     //have two columns to test
     private static final String KEY_ID = "ID";
+    private static final String KEY_FILE = "FileName";
     private static final String KEY_NAME = "Name";
     private static final String KEY_STR ="Strength";
     private static final String KEY_DEX ="Dexterity";
@@ -36,7 +38,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db){
 
-        String CREATE_TABLE_DATA="CREATE TABLE "+ Table_Name+ "("+ KEY_ID + " INTEGER PRIMARY KEY, "+ KEY_NAME +
+        String CREATE_TABLE_DATA="CREATE TABLE "+ Table_Name+ "("+ KEY_ID + " INTEGER PRIMARY KEY, "+KEY_FILE+" TEXT, "+ KEY_NAME +
                 " TEXT, " + KEY_STR+ " INTEGER, "+KEY_DEX+" INTEGER, " +KEY_CONST+ " INTEGER, " +KEY_INT+ " INTEGER, "+ KEY_WIS+ " INTEGER)";
         db.execSQL(CREATE_TABLE_DATA);
     }
@@ -48,10 +50,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // Create tables again
         onCreate(db);
     }
-    public void insert(int id, String name,int Str,int Dex,int Const ,int Int, int Wis){
+    public void insert(int id, String FileName,String name, int Str,int Dex,int Const ,int Int, int Wis){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_ID,id);
+        values.put(KEY_FILE,FileName);
         values.put(KEY_NAME, name); // Name
         values.put(KEY_STR, Str); // strength
         values.put(KEY_DEX, Dex); // dexterity
@@ -71,44 +74,52 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             cursor.moveToFirst();
         }
         StringBuffer sb= new StringBuffer();
-        sb= sb.append(cursor.getString(0)+" ");
-        sb=sb.append(cursor.getString(1)+" ");
+       // sb= sb.append(cursor.getString(0)+" ");
+       // sb=sb.append(cursor.getString(1)+" ");
         sb=sb.append(cursor.getString(2)+" ");
-        sb=sb.append(cursor.getString(3)+" ");
-        sb=sb.append(cursor.getString(4)+" ");
-        sb=sb.append(cursor.getString(5)+" ");
-        sb=sb.append(cursor.getString(7)+" ");
+        //sb=sb.append(cursor.getString(3)+" ");
+        //sb=sb.append(cursor.getString(4)+" ");
+        //sb=sb.append(cursor.getString(5)+" ");
+        //sb=sb.append(cursor.getString(6)+" ");
         String exit= sb.toString();
         return exit;
 
     }
-    public int getStrength(int id){
-        int str=0;
-        SQLiteDatabase db=this.getReadableDatabase();
-        if(db==null){
-            return 0;
-        }
-        //
-        // Cursor cursor=db.query(Table_Name,new String[]{"Strength"},"Strength like "+"'" + id+"'", null,null,null,null);
-        String[] args={toString().valueOf(id)};
-        Cursor cursor=db.rawQuery("SELECT Strength FROM ProfileData WHERE ID  = ?",args);
-        while(cursor.moveToFirst()){
-            str=cursor.getInt(0);
+    public String getStrength(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
 
+        Cursor cursor= db.query(Table_Name, new String []{KEY_STR}, KEY_ID+ "=?", new String []{String.valueOf(id)},
+                null,null,null,null);
+        if(cursor!=null){
+            cursor.moveToFirst();
         }
-        cursor.close();
-
-        return str;
+        StringBuffer sb= new StringBuffer();
+        sb=sb.append(cursor.getString(0)+" ");
+        String exit= sb.toString();
+        return exit;
     }
-    public int test(){
+    public String getName(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor= db.query(Table_Name, new String []{KEY_NAME}, KEY_ID+ "=?", new String []{String.valueOf(id)},
+                null,null,null,null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        StringBuffer sb= new StringBuffer();
+        sb=sb.append(cursor.getString(0)+" ");
+        String exit= sb.toString();
+        return exit;
+    }
+    public int test(String FileName){
         SQLiteDatabase db= this.getReadableDatabase();
 
         if(db==null){
             return 100;
         }
-        String [] args={"Dylan"};
-       // Cursor cursor=db.rawQuery("SELECT Strength FROM ProfileData WHERE Name  = ?",args);
-        Cursor cursor=db.query(Table_Name,new String []{KEY_STR},KEY_NAME+"=?",new String[]{"Dylan"},null,null,null,null);
+        String [] args={FileName};
+         Cursor cursor=db.rawQuery("SELECT Strength FROM ProfileData WHERE FileName  = ?",args);
+       // Cursor cursor=db.query(Table_Name,new String []{KEY_STR},KEY_FILE+"=?",new String[]{"Dylan"},null,null,null,null);
         int ret=17;
         //String]]
         System.out.println("************************************************now");
@@ -125,7 +136,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
            System.out.println("************************************************later");
             ret=Integer.parseInt(cursor.getString(0));
             System.out.println( ret);
-
        }else{
            ret=72;
        }*/
