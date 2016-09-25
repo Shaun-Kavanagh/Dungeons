@@ -15,7 +15,9 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+
+                android:text="10"
+                android:textSize="35sp"
                 android:minHeight="40dp"
                 android:minWidth="70dp"
                 android:id="@+id/textViewStr"
@@ -25,6 +27,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="number"
+                android:text="11"
+                android:textSize="35sp"
                 android:minHeight="40dp"
                 android:minWidth="70dp"
                 android:id="@+id/textViewDex"
@@ -34,6 +38,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="number"
+                android:text="17"
+                android:textSize="35sp"
                 android:minHeight="40dp"
                 android:minWidth="70dp"
                 android:id="@+id/textViewConst"
@@ -43,15 +49,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="number"
+                android:text="9"
+                android:textSize="35sp"
                 android:minHeight="40dp"
                 android:minWidth="70dp"
                 android:id="@+id/textViewInt"
                 android:layout_below="@+id/textViewName" android:layout_toRightOf="@+id/textViewConst"
                 android:layout_toEndOf="@+id/textViewConst"/>
-        <EditText
+        <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="number"
+                android:text="13"
+                android:textSize="35sp"
                 android:minHeight="40dp"
                 android:minWidth="70dp"
                 android:id="@+id/textViewWis"
@@ -60,6 +70,8 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Your own fists"
+                android:textSize="35sp"
                 android:minHeight="250dp"
                 android:minWidth="350dp"
                 android:id="@+id/textViewEquip" android:layout_centerVertical="true" android:layout_centerHorizontal="true"/>
@@ -73,7 +85,7 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Text"
+                android:text="Default Name"
                 android:minWidth="350dp"
                 android:minHeight="70dp"
                 android:textSize="40sp"
