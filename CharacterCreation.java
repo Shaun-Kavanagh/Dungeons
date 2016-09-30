@@ -3,6 +3,7 @@ package com.example.shaun.dungeon;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -30,7 +31,7 @@ import java.io.OutputStreamWriter;
  * Created by shaun on 10/09/2016.
  */
 public class CharacterCreation extends AppCompatActivity {
-    EditText NameView, Strength,Dexterity,Constitution,Intelligence,Wisdom;
+    EditText NameView, Strength,Dexterity,Constitution,Intelligence,Wisdom,Equipment;
     TextView NameViewText;
     Context context;
 
@@ -61,6 +62,8 @@ public class CharacterCreation extends AppCompatActivity {
         Constitution=(EditText)findViewById(R.id.editTextConst);
         Intelligence=(EditText)findViewById(R.id.editTextInt);
         Wisdom=(EditText)findViewById(R.id.editTextWis);
+        Equipment=(EditText)findViewById(R.id.editTextEquip);
+
         final String Name = "Please Enter Character  Name";
         NameView.setText(Name);
         final Button Create = (Button) findViewById(R.id.Create);
@@ -71,8 +74,8 @@ public class CharacterCreation extends AppCompatActivity {
             public void onClick(View v) {
 
                 FileIO File = new FileIO();
-               //String Name=File.load(Profile, context);
-                 String Name1 = NameView.getText().toString() + "\n";
+                //String Name=File.load(Profile, context);
+                String Name1 = NameView.getText().toString() + "\n";
 
                 try {
                     File.save(Profile, Name1, context);
@@ -85,13 +88,20 @@ public class CharacterCreation extends AppCompatActivity {
                 int con= Integer.parseInt(Constitution.getText().toString());
                 int inte= Integer.parseInt(Intelligence.getText().toString());
                 int wis= Integer.parseInt(Wisdom.getText().toString());
-                String ret= db.getName(0);
+                String equip=Equipment.getText().toString();
+                String ret="";
+                try {
+                    ret = db.getName(id);
+                }
+                catch(CursorIndexOutOfBoundsException e){
+                    System.out.println(e);
+
+                }
                 if(ret.equals("")) {
-                    db.insert(id, Profile, Name1, str, dex, con, inte, wis);
+                    db.insert(id, Profile, Name1, str, dex, con, inte, wis,equip);
                 }else{
 
-                    //.update(id, Profile, Name1, str, dex, con, inte, wis);
-                    String ex="UPDATE STRENGTH FROM TABLENAME WHERE STR LIKE 2";
+                    db.update(id, Profile, Name1, str, dex, con, inte, wis,equip);
                 }
 
 

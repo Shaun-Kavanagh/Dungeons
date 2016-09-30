@@ -1,16 +1,16 @@
 package com.example.shaun.dungeon;
 
-        import android.content.Context;
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.support.v7.app.AppCompatActivity;
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.EditText;
-        import android.widget.TextView;
-        import org.w3c.dom.Text;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import org.w3c.dom.Text;
 
-        import java.io.File;
+import java.io.File;
 
 /**
  * Created by shaun on 09/09/2016.
@@ -55,6 +55,16 @@ public class CharacterSheet extends AppCompatActivity {
             NameView.setText(Name);
             String str=db.getStrength(id);
             Strength.setText(str);
+            String dex=db.getDex(id);
+            Dexterity.setText(dex);
+            String Const=db.getConst(id);
+            Constitution.setText(Const);
+            String Int= db.getInt(id);
+            Intelligence.setText(Int);
+            String Wis=db.getWis(id);
+            Wisdom.setText(Wis);
+            String equip=db.getEquip(id);
+            Equipment.setText(equip);
 
         }
         catch(RuntimeException e){

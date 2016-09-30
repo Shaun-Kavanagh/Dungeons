@@ -14,9 +14,9 @@ import android.provider.Settings;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
 
-    private static final String DATABASE_NAME="CharacterData";
+    private static final String DATABASE_NAME="CharacterData1";
     private static final int DATABASE_VERSION= 1;
-    private static final String Table_Name="ProfileData";
+    private static final String Table_Name="ProfileData1";
 
     //have two columns to test
     private static final String KEY_ID = "ID";
@@ -27,6 +27,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_CONST ="Constitution";
     private static final String KEY_INT="Intelligence";
     private static final String KEY_WIS ="Wisdom";
+    private static final String KEY_EQUIP="Equipment";
 
     public DatabaseHandler(Context context) {
 
@@ -39,7 +40,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db){
 
         String CREATE_TABLE_DATA="CREATE TABLE "+ Table_Name+ "("+ KEY_ID + " INTEGER PRIMARY KEY, "+KEY_FILE+" TEXT, "+ KEY_NAME +
-                " TEXT, " + KEY_STR+ " INTEGER, "+KEY_DEX+" INTEGER, " +KEY_CONST+ " INTEGER, " +KEY_INT+ " INTEGER, "+ KEY_WIS+ " INTEGER)";
+                " TEXT, " + KEY_STR+ " INTEGER, "+KEY_DEX+" INTEGER, " +KEY_CONST+ " INTEGER, " +KEY_INT+ " INTEGER, "+ KEY_WIS+ " INTEGER, "
+                +KEY_EQUIP+" TEXT)";
         db.execSQL(CREATE_TABLE_DATA);
     }
     @Override
@@ -50,7 +52,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // Create tables again
         onCreate(db);
     }
-    public void insert(int id, String FileName,String name, int Str,int Dex,int Const ,int Int, int Wis){
+    public void insert(int id, String FileName,String name, int Str,int Dex,int Const ,int Int, int Wis,String Equip){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_ID,id);
@@ -61,6 +63,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_CONST, Const); // Constitution
         values.put(KEY_INT, Int); // Intelligence
         values.put(KEY_WIS, Wis); // Name
+        values.put(KEY_EQUIP,Equip);
         db.insert(Table_Name, null, values);
         db.close();
 
@@ -68,14 +71,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public String read(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor= db.query(Table_Name, new String []{KEY_ID,KEY_NAME,KEY_STR,KEY_DEX,KEY_CONST,KEY_INT,KEY_WIS}, KEY_ID+ "=?", new String []{String.valueOf(id)},
+        Cursor cursor= db.query(Table_Name, new String []{KEY_ID,KEY_NAME,KEY_STR,KEY_DEX,KEY_CONST,KEY_INT,KEY_WIS}, KEY_ID+ " = ?", new String []{String.valueOf(id)},
                 null,null,null,null);
         if(cursor!=null){
             cursor.moveToFirst();
         }
         StringBuffer sb= new StringBuffer();
-       // sb= sb.append(cursor.getString(0)+" ");
-       // sb=sb.append(cursor.getString(1)+" ");
+        // sb= sb.append(cursor.getString(0)+" ");
+        // sb=sb.append(cursor.getString(1)+" ");
         sb=sb.append(cursor.getString(2)+" ");
         //sb=sb.append(cursor.getString(3)+" ");
         //sb=sb.append(cursor.getString(4)+" ");
@@ -88,7 +91,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public String getStrength(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor= db.query(Table_Name, new String []{KEY_STR}, KEY_ID+ "=?", new String []{String.valueOf(id)},
+        Cursor cursor= db.query(Table_Name, new String []{KEY_STR}, KEY_ID+ " = ?", new String []{String.valueOf(id)},
                 null,null,null,null);
         if(cursor!=null){
             cursor.moveToFirst();
@@ -101,7 +104,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public String getName(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor= db.query(Table_Name, new String []{KEY_NAME}, KEY_ID+ "=?", new String []{String.valueOf(id)},
+        Cursor cursor= db.query(Table_Name, new String []{KEY_NAME}, KEY_ID+ " = ?", new String []{String.valueOf(id)},
                 null,null,null,null);
         if(cursor!=null){
             cursor.moveToFirst();
@@ -111,36 +114,86 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String exit= sb.toString();
         return exit;
     }
-    public int test(String FileName){
+    public String getDex(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor= db.query(Table_Name, new String []{KEY_DEX}, KEY_ID+ " = ?", new String []{String.valueOf(id)},
+                null,null,null,null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        StringBuffer sb= new StringBuffer();
+        sb=sb.append(cursor.getString(0)+" ");
+        String exit= sb.toString();
+        return exit;
+    }
+    public String getConst(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor= db.query(Table_Name, new String []{KEY_CONST}, KEY_ID+ " = ?", new String []{String.valueOf(id)},
+                null,null,null,null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        StringBuffer sb= new StringBuffer();
+        sb=sb.append(cursor.getString(0)+" ");
+        String exit= sb.toString();
+        return exit;
+    }
+    public String getInt(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor= db.query(Table_Name, new String []{KEY_INT}, KEY_ID+ " = ?", new String []{String.valueOf(id)},
+                null,null,null,null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        StringBuffer sb= new StringBuffer();
+        sb=sb.append(cursor.getString(0)+" ");
+        String exit= sb.toString();
+        return exit;
+    }
+    public String getWis(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor= db.query(Table_Name, new String []{KEY_WIS}, KEY_ID+ "=?", new String []{String.valueOf(id)},
+                null,null,null,null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        StringBuffer sb= new StringBuffer();
+        sb=sb.append(cursor.getString(0)+" ");
+        String exit= sb.toString();
+        return exit;
+    }
+    public String getEquip(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor= db.query(Table_Name, new String []{KEY_EQUIP}, KEY_ID+ "= ?", new String []{String.valueOf(id)},
+                null,null,null,null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        StringBuffer sb= new StringBuffer();
+        sb=sb.append(cursor.getString(0)+" ");
+        String exit= sb.toString();
+        return exit;
+    }
+    public void update(int id, String FileName,String name, int Str,int Dex,int Const ,int Int, int Wis,String Equip){
         SQLiteDatabase db= this.getReadableDatabase();
+        ContentValues values= new ContentValues();
 
-        if(db==null){
-            return 100;
-        }
-        String [] args={FileName};
-         Cursor cursor=db.rawQuery("SELECT Strength FROM ProfileData WHERE FileName  = ?",args);
-       // Cursor cursor=db.query(Table_Name,new String []{KEY_STR},KEY_FILE+"=?",new String[]{"Dylan"},null,null,null,null);
-        int ret=17;
-        //String]]
-        System.out.println("************************************************now");
-        if (cursor.moveToFirst()) {
-            while(!cursor.isAfterLast()) { // If you use c.moveToNext() here, you will bypass the first row, which is WRONG
-                System.out.println("************************************************later");
-                ret=Integer.parseInt(cursor.getString(0));
-                System.out.println( ret);
+        values.put(KEY_ID,id);
+        values.put(KEY_FILE,FileName);
+        values.put(KEY_NAME, name); // Name
+        values.put(KEY_STR, Str); // strength
+        values.put(KEY_DEX, Dex); // dexterity
+        values.put(KEY_CONST, Const); // Constitution
+        values.put(KEY_INT, Int); // Intelligence
+        values.put(KEY_WIS, Wis);
+        values.put(KEY_EQUIP,Equip);
 
-                cursor.moveToNext();
-            }
-        }
-      /* if(cursor.moveToFirst()){
-           System.out.println("************************************************later");
-            ret=Integer.parseInt(cursor.getString(0));
-            System.out.println( ret);
-       }else{
-           ret=72;
-       }*/
-        cursor.close();
-        return ret;
+        db.update(Table_Name,values,KEY_ID+ " = ?",new String []{String.valueOf(id)});
 
     }
 }
