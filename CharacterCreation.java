@@ -3,6 +3,7 @@ package com.example.shaun.dungeon;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.database.sqlite.*;
 
 import java.io.*;
 import java.util.*;
@@ -29,7 +31,7 @@ import java.io.OutputStreamWriter;
  * Created by shaun on 10/09/2016.
  */
 public class CharacterCreation extends AppCompatActivity {
-    EditText NameView;
+    EditText NameView, Strength,Dexterity,Constitution,Intelligence,Wisdom,Equipment;
     TextView NameViewText;
     Context context;
 
@@ -40,7 +42,28 @@ public class CharacterCreation extends AppCompatActivity {
         setContentView(R.layout.activity_character_creation);
         Intent intent = getIntent();
         final String Profile = intent.getStringExtra("filename");
+        final int id;
+        if(Profile.equals("CharacterProfile1")){
+            id=0;
+        }else if(Profile.equals("CharacterProfile2")){
+            id=1;
+        }else if(Profile.equals("CharacterProfile3")){
+            id=2;
+        }else if(Profile.equals("CharacterProfile4")){
+            id=3;
+        }else if(Profile.equals("CharacterProfile5")){
+            id=4;
+        }else{
+            id=5;
+        }
         NameView = (EditText) findViewById(R.id.CharacterNameCreation);
+        Strength=(EditText)findViewById(R.id.editTextStr);
+        Dexterity=(EditText)findViewById(R.id.editTextDex);
+        Constitution=(EditText)findViewById(R.id.editTextConst);
+        Intelligence=(EditText)findViewById(R.id.editTextInt);
+        Wisdom=(EditText)findViewById(R.id.editTextWis);
+        Equipment=(EditText)findViewById(R.id.editTextEquip);
+
         final String Name = "Please Enter Character  Name";
         NameView.setText(Name);
         final Button Create = (Button) findViewById(R.id.Create);
@@ -51,13 +74,36 @@ public class CharacterCreation extends AppCompatActivity {
             public void onClick(View v) {
 
                 FileIO File = new FileIO();
-                //File.load(Profile, context);
-                String Name = NameView.getText().toString() + "\n";
+                //String Name=File.load(Profile, context);
+                String Name1 = NameView.getText().toString() + "\n";
+
                 try {
-                    File.save(Profile, Name, context);
+                    File.save(Profile, Name1, context);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                DatabaseHandler db= new DatabaseHandler(context);
+                int str= Integer.parseInt(Strength.getText().toString());
+                int dex= Integer.parseInt(Dexterity.getText().toString());
+                int con= Integer.parseInt(Constitution.getText().toString());
+                int inte= Integer.parseInt(Intelligence.getText().toString());
+                int wis= Integer.parseInt(Wisdom.getText().toString());
+                String equip=Equipment.getText().toString();
+                String ret="";
+                try {
+                    ret = db.getName(id);
+                }
+                catch(CursorIndexOutOfBoundsException e){
+                    System.out.println(e);
+
+                }
+                if(ret.equals("")) {
+                    db.insert(id, Profile, Name1, str, dex, con, inte, wis,equip);
+                }else{
+
+                    db.update(id, Profile, Name1, str, dex, con, inte, wis,equip);
+                }
+
 
                 //send back to charcter page
                 Intent ButtonIntent = new Intent(CharacterCreation.this, Character.class) ;

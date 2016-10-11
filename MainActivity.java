@@ -18,11 +18,20 @@ public class MainActivity extends AppCompatActivity {
 
         //initialize button
         final Button CharacterButton= (Button) findViewById(R.id.buttonCharacter);
+        final Button DiceButton= (Button) findViewById(R.id.buttonDice);
+
         //set up action for button
         CharacterButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent ButtonIntent= new Intent(MainActivity.this,Character.class);
+                startActivity(ButtonIntent);
+            }
+        });
+        DiceButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ButtonIntent= new Intent(MainActivity.this,Dice.class);
                 startActivity(ButtonIntent);
             }
         });
