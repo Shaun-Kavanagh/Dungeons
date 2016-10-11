@@ -23,11 +23,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            android:minHeight="70dp"
+            android:minHeight="80dp"
             android:minWidth="300dp"
             android:background="@null"
             android:clickable="true"
-            android:id="@+id/button"
-            android:layout_centerVertical="true" android:layout_alignLeft="@+id/buttonCharacter"
-            android:layout_alignStart="@+id/buttonCharacter"/>
+            android:id="@+id/buttonDice"
+            android:layout_below="@+id/buttonDice" android:layout_alignLeft="@+id/buttonCharacter"
+            android:layout_alignStart="@+id/buttonCharacter" android:layout_marginTop="54dp"/>
 </RelativeLayout>
